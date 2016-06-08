@@ -112,3 +112,26 @@ export function loadPosts(posts) {
   }
 }
 ```
+
+## Async actions
+
+Here is an example of an asynchronous action. It returns a function (this
+allows thunk to do it's thing) which will receive the store's dispatch
+function.
+
+By returning a promise from this function, it action can then be resolved.
+Before it does though, you can handily dispatch the results update the state.
+
+`actions/posts.js`
+
+```js
+export function getPosts() {
+  return function (dispatch) {
+    return fetch('/api/posts.json')
+      .then(response => response.json())
+      .then((posts) => {
+        dispatch(loadPosts(posts));
+      });
+  };
+}
+```
