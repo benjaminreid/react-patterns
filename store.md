@@ -113,6 +113,15 @@ export function loadPosts(posts) {
 }
 ```
 
+> Pro Tip: You can also write your actions a little more cleanly
+
+```js
+export const loadPosts = (posts) => ({
+    type: LOAD_POSTS,
+    posts
+});
+```
+
 ## Async actions
 
 Here is an example of an asynchronous action. It returns a function (this
